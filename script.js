@@ -1,18 +1,7 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-//Characters and parameters to be included in the password
-
-// var criteria = {
-//   lowercase: "abcdefghijklmnopqrstuvwxyz",
-//   uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-//   specialCharacters: "~!@#$%^&*()_-+=?[]/{}.,;:'<>|",
-//   numbers: "0123456789",
-//   charMin: 8,
-//   charMax: 128,
-//   userInput: "Enter length of password:",
-// };
-
+//Characters, parameters, and empty strings to be included in the password
 var lowercase = "abcdefghijklmnopqrstuvwxyz";
 var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var specialCharacters = "~!@#$%^&*()";
@@ -28,21 +17,17 @@ var userChoices = "";
 var chosen = "";
 var randomPassword = "";
 
+//Function created to provide an alert if a user inputs less than 8 or more than 128 and the generate password function is executed again.
 function funcMinMax() {
   alert("Passwords must be between 8 and 128");
   generatePassword();
 }
 
-function loCase() {
-  lowercase;
-  var charactersLength = characters.length;
-  var counter = 0;
-  while (counter < length) {
-    result += lowercase.charAt(Math.floor(Math.random() * charactersLength));
-    counter += 1;
-  }
-}
-
+//The generatePassword function first check password length.
+//Users input a value and if it doesn't meet the requirements, the funcMinMax runs and starts the process over.
+//Following a successful input, prompts are displayed for the 4 options to include in the password.
+//A for loop is then used to combine userChoices into a new string, randomPassword, and then characters are randomly selected.
+//The password is then returned in the text area.
 function generatePassword() {
   passwordLength = prompt("Please enter desired password length");
   if (
@@ -73,9 +58,16 @@ function generatePassword() {
     if (num) {
       userChoices += numbers;
     }
+    for (var i = 0; i < passwordLength - chosen.length; i++)
+      randomPassword += userChoices.charAt(
+        Math.floor(Math.random() * userChoices.length)
+      );
+    randomPassword += chosen;
+
+    return randomPassword;
   }
 }
-console.log(generatePassword);
+console.log(randomPassword);
 
 // Write password to the #password input
 function writePassword() {
