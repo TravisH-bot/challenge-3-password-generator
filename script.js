@@ -67,7 +67,6 @@ function generatePassword() {
     return randomPassword;
   }
 }
-console.log(randomPassword);
 
 // Write password to the #password input
 function writePassword() {
@@ -79,7 +78,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Addition_assignment
-// var a = 2;
-// console.log((a += 3));
