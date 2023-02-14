@@ -15,7 +15,7 @@ var sChar;
 var num;
 var userChoices = "";
 var chosen = "";
-var randomPassword = "";
+// var randomPassword = "";
 
 //Function created to provide an alert if a user inputs less than 8 or more than 128 and the generate password function is executed again.
 function funcMinMax() {
@@ -29,6 +29,7 @@ function funcMinMax() {
 //A for loop is then used to combine userChoices into a new string, randomPassword, and then characters are randomly selected.
 //The password is then returned in the text area.
 function generatePassword() {
+  var randomPassword = "";
   passwordLength = prompt("Please enter desired password length");
   if (
     parseInt(passwordLength) < charMin ||
@@ -58,12 +59,11 @@ function generatePassword() {
     if (num) {
       userChoices += numbers;
     }
-    for (var i = 0; i < passwordLength - chosen.length; i++)
+    for (var i = 0; i < parseInt(passwordLength); i++) {
       randomPassword += userChoices.charAt(
         Math.floor(Math.random() * userChoices.length)
       );
-    randomPassword += chosen;
-
+    }
     return randomPassword;
   }
 }
@@ -71,6 +71,7 @@ function generatePassword() {
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
+  console.log(password);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
